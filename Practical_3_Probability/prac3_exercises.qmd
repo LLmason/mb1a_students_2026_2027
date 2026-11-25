@@ -1,0 +1,60 @@
+---
+title: "prac3_exercises.qmd"
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this 
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+
+```{r}
+set.seed(42)
+
+for (i in seq_len(20)) {
+  print(i^3)
+}
+
+for (i in seq_len(5)) {
+  print(paste(sample(letters, 5, replace = TRUE), collapse = ""))
+}
+```
+
+```{r}
+library(tidyverse)
+library(gt)
+set.seed(42)
+
+breakfast <- c("eggs", "bacon", "sausages", "toast")
+nums <- seq_len(5)
+
+break_df <- tibble()
+
+for (i in seq_len(10)) {
+  item <- sample(breakfast, size = 1)
+  num <- sample(nums, size = 1)
+  row <- tibble(
+    item = item,
+    count = num
+  )
+  break_df <- bind_rows(break_df, row)
+}
+gt(break_df)
+```
+
